@@ -1,0 +1,7 @@
+D:\projects\Hw5\bin\Debug\Hw5.exe.config
+D:\projects\Hw5\bin\Debug\Hw5.exe
+D:\projects\Hw5\bin\Debug\Hw5.pdb
+D:\projects\Hw5\obj\Debug\Hw5.csproj.AssemblyReference.cache
+D:\projects\Hw5\obj\Debug\Hw5.csproj.CoreCompileInputs.cache
+D:\projects\Hw5\obj\Debug\Hw5.exe
+D:\projects\Hw5\obj\Debug\Hw5.pdb
