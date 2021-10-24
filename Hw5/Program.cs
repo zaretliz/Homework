@@ -15,11 +15,13 @@ namespace Hw5
        /// <param name="number"></param>
        static void PrintMul(int [,] matrix, int number)
         {
+            int row = matrix.GetLength(0);
+            int col = matrix.GetLength(1);
             Console.WriteLine($"Умножение матрицы на число {number}  ");
-            for (int i = 0; i < matrix.GetLength(0); i++)
+            for (int i = 0; i < row; i++)
             {
-                Console.Write((i == (int)(matrix.GetLength(0) / 2)) ? $" {number} * | " : "     | ");
-                for (int k = 0; k < matrix.GetLength(1); k++) { Console.Write($"{matrix[i, k]} "); }
+                Console.Write((i == (int)(row / 2)) ? $" {number} * | " : "     | ");
+                for (int k = 0; k < col; k++) { Console.Write($"{matrix[i, k]} "); }
                 Console.WriteLine("|");
                 Console.WriteLine();
             }
@@ -30,11 +32,13 @@ namespace Hw5
         /// <param name="matrix"></param>
         static void PrintMul(int[,] matrix)
         {
+            int row = matrix.GetLength(0);
+            int col = matrix.GetLength(1);
             Console.WriteLine("Результат умножения: ");
-            for (int i = 0; i < matrix.GetLength(0); i++)
+            for (int i = 0; i < row; i++)
             {
                 Console.Write("|");
-                for (int m = 0; m < matrix.GetLength(1); m++) { Console.Write($"{matrix[i, m]} "); }
+                for (int m = 0; m < col; m++) { Console.Write($"{matrix[i, m]} "); }
                 Console.WriteLine("|");
                 Console.WriteLine();
             }
@@ -48,10 +52,12 @@ namespace Hw5
         /// <param name="matrix"></param>
         static int[,] MulMatrixNumber(int number, int[,] matrix)
         {
-            int[,] newmatrix = new int[matrix.GetLength(0), matrix.GetLength(1)];
-            for (int i = 0; i < matrix.GetLength(0); i++)
+            int row = matrix.GetLength(0);
+            int col = matrix.GetLength(1);
+            int[,] newmatrix = new int[row, col];
+            for (int i = 0; i < row; i++)
             {
-                for (int j = 0; j < matrix.GetLength(1); j++)
+                for (int j = 0; j < col; j++)
                 {
                     newmatrix[i, j] = matrix[i, j] * number;
                 }
@@ -66,10 +72,12 @@ namespace Hw5
         /// <param name="number"></param>
         static void Print(int[,] matrix)
         {
-            for (int i = 0; i < matrix.GetLength(0); i++)
+            int row = matrix.GetLength(0);
+            int col = matrix.GetLength(1);
+            for (int i = 0; i < row; i++)
             {
                 Console.Write("|");
-                for (int k = 0; k < matrix.GetLength(1); k++) { Console.Write($" {matrix[i, k]} "); }
+                for (int k = 0; k < col; k++) { Console.Write($" {matrix[i, k]} "); }
                 Console.WriteLine("|");
                 Console.WriteLine();
             }
@@ -80,17 +88,31 @@ namespace Hw5
         /// <param name="matrix"></param>
         static void PrintSum(int[,] matrix)
         {
+            int row = matrix.GetLength(0);
+            int col = matrix.GetLength(1);
             Console.WriteLine("Результат сложения: ");
-            for (int i = 0; i < matrix.GetLength(0); i++)
+            for (int i = 0; i < row; i++)
             {
                 Console.Write("|");
-                for (int m = 0; m < matrix.GetLength(1); m++) { Console.Write($" {matrix[i, m]} "); }
+                for (int m = 0; m < col; m++) { Console.Write($" {matrix[i, m]} "); }
                 Console.WriteLine("|");
                 Console.WriteLine();
             }
             Console.ReadKey();
         }
+        
+        static bool CheckSum(int row1, int col1, int row2, int col2)
+        {
 
+            if (col1 != col2 || row1 != row2)
+            {
+                Console.Write("Сложение и вычитание матриц с разным размером невозможно!. Попробуйте ещё раз\n ");
+
+                return false;
+                 
+            }
+            return true;
+        }
         /// <summary>
         /// Сумма матриц
         /// </summary>
@@ -98,16 +120,15 @@ namespace Hw5
         /// <param name="matrixB"></param>
         static int [,] SumMatrix(int[,] matrixA, int[,] matrixB)
         {
-            while (matrixA.GetLength(1) != matrixB.GetLength(1) || matrixA.GetLength(0) != matrixB.GetLength(0))
+            int row1 = matrixA.GetLength(0);
+            int col1 = matrixA.GetLength(1);
+            int row2 = matrixB.GetLength(0);
+            int col2 = matrixB.GetLength(1);
+            
+            int[,] MatrixC = new int[row1, col2];
+            for (int i = 0; i < row1; i++)
             {
-                Console.Write("Сложение и вычитание матриц с разным размером невозможно!. Попробуйте ещё раз\n ");
-                matrixB = SecondMatrix();
-                Print(matrixB);
-            }
-            int[,] MatrixC = new int[matrixA.GetLength(0), matrixB.GetLength(1)];
-            for (int i = 0; i < matrixA.GetLength(0); i++)
-            {
-                for (int j = 0; j < matrixB.GetLength(1); j++)
+                for (int j = 0; j < col2; j++)
                 {
                     MatrixC[i, j] = matrixA[i, j] + matrixB[i, j];
                 }
@@ -115,6 +136,22 @@ namespace Hw5
             return MatrixC;
         }
 
+        static bool CheckMul(int row1, int col1, int row2, int col2)
+        {
+            //Проверка можно ли умножать матрицы
+            if (col1 != row2 || row1 > row2)
+            {
+                Console.Write("Умножение матриц невозможно! Количество столбцов первой матрицы не равно количеству строк второй. Попробуйте ещё раз\n ");
+                return false;
+            }
+
+            if (row1 > row2 && col1 > col2)
+            {
+                Console.Write("Умножение матриц невозможно");
+                return false;
+            }
+            return true;
+        }
         /// <summary>
         /// Умножение двух матриц
         /// </summary>
@@ -122,25 +159,17 @@ namespace Hw5
         /// <param name="matrixB"></param>
         static int [,] MulMatrix(int[,] matrixA, int[,] matrixB)
         {
-            //Проверка можно ли умножать матрицы
-            while (matrixA.GetLength(1) != matrixB.GetLength(0) || matrixA.GetLength(0) > matrixB.GetLength(0))
+            int row1 = matrixA.GetLength(0);
+            int col1 = matrixA.GetLength(1);
+            int row2 = matrixB.GetLength(0);
+            int col2 = matrixB.GetLength(1);
+            
+            int[,] MatrixC = new int[row1, col2];
+            for (int i = 0; i < row1; i++)
             {
-                Console.Write("Умножение матриц невозможно! Количество столбцов первой матрицы не равно количеству строк второй. Попробуйте ещё раз\n ");
-                matrixB = SecondMatrix();
-                Print(matrixB);
-            }
-
-            while (matrixA.GetLength(0) > matrixB.GetLength(0) && matrixA.GetLength(1) > matrixB.GetLength(1))
-            {
-                Console.Write("Умножение матриц невозможно");
-                Console.ReadKey();
-            }
-            int[,] MatrixC = new int[matrixA.GetLength(0), matrixB.GetLength(1)];
-            for (int i = 0; i < matrixA.GetLength(0); i++)
-            {
-                for (int j = 0; j < matrixB.GetLength(1); j++)
+                for (int j = 0; j < col2; j++)
                 {
-                    for (int k = 0; k < matrixA.GetLength(1); k++)
+                    for (int k = 0; k < col1; k++)
                     {
                         MatrixC[i, j] += matrixA[i, k] * matrixB[k, j];
                     }
@@ -150,33 +179,98 @@ namespace Hw5
 
             return MatrixC;
         }
-     
+
+        /// <summary>
+        /// Ввод строк
+        /// </summary>
+        /// <returns></returns>
+        static int DataRow()
+        {
+            int row = 0;
+            do
+            {
+                Console.WriteLine("Введите количество строк для матрицы: ");
+                string text = Console.ReadLine();
+                bool res = int.TryParse(text, out row);
+                if (res)
+                {
+                    row = int.Parse(text);
+                    return row;
+                }
+                else { Console.WriteLine("Не удалось распознать число, попробуйте еще раз."); }
+ 
+            }
+            while (true);
+        }
+        /// <summary>
+        /// Ввод столбцов
+        /// </summary>
+        /// <returns></returns>
+        static int DataCol()
+        {
+            int col = 0;
+            do
+            {
+                Console.WriteLine("Введите количество столбцов для матрицы: ");
+                string text = Console.ReadLine();
+                bool res = int.TryParse(text, out col);
+                if (res)
+                {
+                    col = int.Parse(text);
+                    return col;
+                }
+                else { Console.WriteLine("Не удалось распознать число, попробуйте еще раз."); }
+
+            }
+            while (true);
+        }
+        /// <summary>
+        /// Проверка ввода числа
+        /// </summary>
+        /// <returns></returns>
+        static int DataNumber()
+        {
+            int num = 0;
+            do
+            {
+                Console.WriteLine("Введите число для умножения: ");
+                string text = Console.ReadLine();
+                bool res = int.TryParse(text, out num);
+                if (res)
+                {
+                    num = int.Parse(text);
+                    return num;
+                }
+                else { Console.WriteLine("Не удалось распознать число, попробуйте еще раз."); }
+
+            }
+            while (true);
+        }
+
+        /// <summary>
+        /// Проверка правильности ввода данных
+        /// </summary>
+        /// <param name="row"></param>
+        /// <param name="col"></param>
+        static void CheckRowCol( int row, int col)
+        {
+            if (row <= 0 || col <= 0)
+            {
+                Console.Write("Неверная размерность матрицы. Попробуйте ещё раз\n ");
+            }
+        }
+
         /// <summary>
         /// Получение первой матрицы
         /// </summary>
-        static int[,] FirstMatrix()
+        static int[,] FirstMatrix(int row, int col)
         {
             Random rand = new Random();
-            Console.WriteLine("Введите количество строк для первой матрицы: ");
-            int row1 = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("Введите количество столбцов для первой матрицы: ");
-            int col1 = int.Parse(Console.ReadLine());
-
-            while (row1 <= 0 || col1 <= 0)
+            int[,] MatrixA = new int[row, col];
+            for (int i = 0; i < row; i++)
             {
-                Console.Write("Неверная размерность матрицы. Попробуйте ещё раз\n ");
-                Console.WriteLine("Введите количество строк для первой матрицы: ");
-                row1 = int.Parse(Console.ReadLine());
-
-                Console.WriteLine("Введите количество столбцов для первой матрицы: ");
-                col1 = int.Parse(Console.ReadLine());
-            }
-
-            int[,] MatrixA = new int[row1, col1];
-            for (int i = 0; i < row1; i++)
-            {
-                for (int j = 0; j < col1; j++)
+                for (int j = 0; j < col; j++)
                 {
                     MatrixA[i, j] = rand.Next(10);
                 }
@@ -187,29 +281,14 @@ namespace Hw5
         /// <summary>
         /// Получение второй матрицы
         /// </summary>
-        static int[,] SecondMatrix()
+        static int[,] SecondMatrix(int row, int col)
         {
             Random rand = new Random();
-            Console.WriteLine("Введите количество строк для второй матрицы: ");
-            int row2 = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("Введите количество столбцов для второй матрицы: ");
-            int col2 = int.Parse(Console.ReadLine());
-
-            while (row2 <= 0 || col2 <= 0)
+            int[,] MatrixB = new int[row, col];
+            for (int i = 0; i < row; i++)
             {
-                Console.Write("Неверная размерность матрицы. Попробуйте ещё раз\n ");
-                Console.WriteLine("Введите количество строк для второй матрицы: ");
-                row2 = int.Parse(Console.ReadLine());
-
-                Console.WriteLine("Введите количество столбцов для второй матрицы: ");
-                col2 = int.Parse(Console.ReadLine());
-            }
-
-            int[,] MatrixB = new int[row2, col2];
-            for (int i = 0; i < row2; i++)
-            {
-                for (int j = 0; j < col2; j++)
+                for (int j = 0; j < col; j++)
                 {
                     MatrixB[i, j] = rand.Next(10);
                 }
@@ -218,7 +297,12 @@ namespace Hw5
             return MatrixB;
         }
 
-
+        static int[] NullMatrix()
+        {
+            int[] matrix = new int[1];
+            matrix[0] = 0;
+            return matrix;
+        }
 
 
         /// <summary>
@@ -227,11 +311,12 @@ namespace Hw5
         /// <param name="args"></param>
         static void Main(string[] args)
         {
+            int row = DataRow();
+            int col = DataCol();
+            CheckRowCol(row, col);
+            int[,] matrix = FirstMatrix(row,col);
 
-            int[,] matrix = FirstMatrix();
-
-            Console.WriteLine("Введите число для умножения: ");
-            int number = int.Parse(Console.ReadLine());
+            int number = DataNumber();
 
             PrintMul(matrix, number);
 
@@ -239,29 +324,69 @@ namespace Hw5
             PrintMul(newmatrix);
             Console.Clear();
 
-            int[,] MatrixA = FirstMatrix();
-            Print(MatrixA);
-            int [,] MatrixB = SecondMatrix();
-            Print(MatrixB);
-         
+            for (; ; )
+            {
+                int row1 = DataRow();
+                int col1 = DataCol();
+                CheckRowCol(row1, col1);
+
+                int row2 = DataRow();
+                int col2 = DataCol();
+                CheckRowCol(row2, col2);
+
+                bool res = CheckSum(row1, col1, row2, col2);
+                if (res == true)
+                {
+                    int[,] MatrixA = FirstMatrix(row1, col1);
+                    int[,] MatrixB = SecondMatrix(row2, col2);
+                    Console.WriteLine("Первая матрица: ");
+                    Print(MatrixA);
+                    Console.WriteLine("Вторая матрица: ");
+                    Print(MatrixB);
+                    int[,] matrixC = SumMatrix(MatrixA, MatrixB);
+                    PrintSum(matrixC);
+                    break;
+
+                }
+                else
+                {
+                    NullMatrix();
+                    continue;
+                }
+            }
             
-            int [,] matrixC = SumMatrix(MatrixA, MatrixB);
-            PrintSum(matrixC);
             Console.Clear();
 
-            int[,] MatrixC = FirstMatrix();
-            Print(MatrixC);
-            int[,] MatrixD = SecondMatrix();
-            Print(MatrixD);
-   
+            for (; ; )
+            {
+                int row1 = DataRow();
+                int col1 = DataCol();
+                CheckRowCol(row1, col1);
 
-            int [,] MatrixE = MulMatrix(MatrixC, MatrixD);
-            PrintMul(MatrixE);
-            
+                int row2 = DataRow();
+                int col2 = DataCol();
+                CheckRowCol(row2, col2);
 
+                bool res = CheckMul(row1, col1, row2, col2);
+                 if (res == true)
+                {
+                    int[,] MatrixC = FirstMatrix(row1, col1);
+                    int[,] MatrixD = SecondMatrix(row2, col2);
+                    Console.WriteLine("Первая матрица: ");
+                    Print(MatrixC);
+                    Console.WriteLine("Вторая матрица: ");
+                    Print(MatrixD);
+                    int[,] MatrixE = MulMatrix(MatrixC, MatrixD);
+                    PrintMul(MatrixE);
+                    break;
+                }
 
-
-
+                else
+                {
+                    NullMatrix();
+                    continue;
+                } 
+            }
         }
     }
 }
