@@ -252,12 +252,14 @@ namespace Hw5
         /// </summary>
         /// <param name="row"></param>
         /// <param name="col"></param>
-        static void CheckRowCol( int row, int col)
+        static bool CheckRowCol( int row, int col)
         {
             if (row <= 0 || col <= 0)
             {
                 Console.Write("Неверная размерность матрицы. Попробуйте ещё раз\n ");
+                return false;
             }
+            return true;
         }
 
         /// <summary>
@@ -311,42 +313,22 @@ namespace Hw5
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            int row = DataRow();
-            int col = DataCol();
-            CheckRowCol(row, col);
-            int[,] matrix = FirstMatrix(row,col);
-
-            int number = DataNumber();
-
-            PrintMul(matrix, number);
-
-            int[,] newmatrix = MulMatrixNumber(number, matrix);
-            PrintMul(newmatrix);
-            Console.Clear();
-
             for (; ; )
             {
-                int row1 = DataRow();
-                int col1 = DataCol();
-                CheckRowCol(row1, col1);
-
-                int row2 = DataRow();
-                int col2 = DataCol();
-                CheckRowCol(row2, col2);
-
-                bool res = CheckSum(row1, col1, row2, col2);
+                int row = DataRow();
+                int col = DataCol();
+                bool res = CheckRowCol(row, col);
                 if (res == true)
                 {
-                    int[,] MatrixA = FirstMatrix(row1, col1);
-                    int[,] MatrixB = SecondMatrix(row2, col2);
-                    Console.WriteLine("Первая матрица: ");
-                    Print(MatrixA);
-                    Console.WriteLine("Вторая матрица: ");
-                    Print(MatrixB);
-                    int[,] matrixC = SumMatrix(MatrixA, MatrixB);
-                    PrintSum(matrixC);
-                    break;
+                    int[,] matrix = FirstMatrix(row, col);
 
+                    int number = DataNumber();
+
+                    PrintMul(matrix, number);
+
+                    int[,] newmatrix = MulMatrixNumber(number, matrix);
+                    PrintMul(newmatrix);
+                    break;
                 }
                 else
                 {
@@ -354,38 +336,87 @@ namespace Hw5
                     continue;
                 }
             }
-            
+
             Console.Clear();
 
             for (; ; )
             {
                 int row1 = DataRow();
                 int col1 = DataCol();
-                CheckRowCol(row1, col1);
+                bool res1 = CheckRowCol(row1, col1);
 
                 int row2 = DataRow();
                 int col2 = DataCol();
-                CheckRowCol(row2, col2);
+                bool res2 = CheckRowCol(row2, col2);
 
-                bool res = CheckMul(row1, col1, row2, col2);
-                 if (res == true)
+                if (res1 == true && res2 == true)
                 {
-                    int[,] MatrixC = FirstMatrix(row1, col1);
-                    int[,] MatrixD = SecondMatrix(row2, col2);
-                    Console.WriteLine("Первая матрица: ");
-                    Print(MatrixC);
-                    Console.WriteLine("Вторая матрица: ");
-                    Print(MatrixD);
-                    int[,] MatrixE = MulMatrix(MatrixC, MatrixD);
-                    PrintMul(MatrixE);
-                    break;
+                    bool res = CheckSum(row1, col1, row2, col2);
+                    if (res == true)
+                    {
+                        int[,] MatrixA = FirstMatrix(row1, col1);
+                        int[,] MatrixB = SecondMatrix(row2, col2);
+                        Console.WriteLine("Первая матрица: ");
+                        Print(MatrixA);
+                        Console.WriteLine("Вторая матрица: ");
+                        Print(MatrixB);
+                        int[,] matrixC = SumMatrix(MatrixA, MatrixB);
+                        PrintSum(matrixC);
+                        break;
+                    }
+                    else
+                    {
+                        NullMatrix();
+                        continue;
+                    }
                 }
-
                 else
                 {
                     NullMatrix();
                     continue;
-                } 
+                }
+            }
+
+            Console.Clear();
+
+            for (; ; )
+            {
+                int row1 = DataRow();
+                int col1 = DataCol();
+                bool res1 = CheckRowCol(row1, col1);
+
+                int row2 = DataRow();
+                int col2 = DataCol();
+                bool res2 = CheckRowCol(row2, col2);
+
+                if (res1 == true && res2 == true)
+                {
+                    bool res = CheckMul(row1, col1, row2, col2);
+                    if (res == true)
+                    {
+                        int[,] MatrixC = FirstMatrix(row1, col1);
+                        int[,] MatrixD = SecondMatrix(row2, col2);
+                        Console.WriteLine("Первая матрица: ");
+                        Print(MatrixC);
+                        Console.WriteLine("Вторая матрица: ");
+                        Print(MatrixD);
+                        int[,] MatrixE = MulMatrix(MatrixC, MatrixD);
+                        PrintMul(MatrixE);
+                        break;
+                    }
+
+                    else
+                    {
+                        NullMatrix();
+                        continue;
+                    }
+                }
+                else
+                {
+                    NullMatrix();
+                    continue;
+                }
+
             }
         }
     }
