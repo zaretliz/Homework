@@ -1,0 +1,6 @@
+D:\projects\Homework\Hw5_5\bin\Debug\Hw5_5.exe.config
+D:\projects\Homework\Hw5_5\bin\Debug\Hw5_5.exe
+D:\projects\Homework\Hw5_5\bin\Debug\Hw5_5.pdb
+D:\projects\Homework\Hw5_5\obj\Debug\Hw5_5.csproj.CoreCompileInputs.cache
+D:\projects\Homework\Hw5_5\obj\Debug\Hw5_5.exe
+D:\projects\Homework\Hw5_5\obj\Debug\Hw5_5.pdb

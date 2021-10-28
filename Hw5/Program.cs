@@ -26,25 +26,7 @@ namespace Hw5
                 Console.WriteLine();
             }
         }
-        /// <summary>
-        /// Вывод на экран матрицы результата
-        /// </summary>
-        /// <param name="matrix"></param>
-        static void PrintMul(int[,] matrix)
-        {
-            int row = matrix.GetLength(0);
-            int col = matrix.GetLength(1);
-            Console.WriteLine("Результат умножения: ");
-            for (int i = 0; i < row; i++)
-            {
-                Console.Write("|");
-                for (int m = 0; m < col; m++) { Console.Write($"{matrix[i, m]} "); }
-                Console.WriteLine("|");
-                Console.WriteLine();
-            }
-            Console.ReadKey();
-        }
-
+       
         /// <summary>
         /// Умножение матрицы на число
         /// </summary>
@@ -82,25 +64,16 @@ namespace Hw5
                 Console.WriteLine();
             }
         }
+       
+       
         /// <summary>
-        /// Вывод на экран матрицы результата
+        /// Проверка матрицы для сложения
         /// </summary>
-        /// <param name="matrix"></param>
-        static void PrintSum(int[,] matrix)
-        {
-            int row = matrix.GetLength(0);
-            int col = matrix.GetLength(1);
-            Console.WriteLine("Результат сложения: ");
-            for (int i = 0; i < row; i++)
-            {
-                Console.Write("|");
-                for (int m = 0; m < col; m++) { Console.Write($" {matrix[i, m]} "); }
-                Console.WriteLine("|");
-                Console.WriteLine();
-            }
-            Console.ReadKey();
-        }
-        
+        /// <param name="row1"></param>
+        /// <param name="col1"></param>
+        /// <param name="row2"></param>
+        /// <param name="col2"></param>
+        /// <returns></returns>
         static bool CheckSum(int row1, int col1, int row2, int col2)
         {
 
@@ -135,7 +108,14 @@ namespace Hw5
             }
             return MatrixC;
         }
-
+        /// <summary>
+        /// Проверка матриц для умножения
+        /// </summary>
+        /// <param name="row1"></param>
+        /// <param name="col1"></param>
+        /// <param name="row2"></param>
+        /// <param name="col2"></param>
+        /// <returns></returns>
         static bool CheckMul(int row1, int col1, int row2, int col2)
         {
             //Проверка можно ли умножать матрицы
@@ -298,7 +278,10 @@ namespace Hw5
             }
             return MatrixB;
         }
-
+        /// <summary>
+        /// Нулевая матрица при неверной проверке
+        /// </summary>
+        /// <returns></returns>
         static int[] NullMatrix()
         {
             int[] matrix = new int[1];
@@ -327,7 +310,8 @@ namespace Hw5
                     PrintMul(matrix, number);
 
                     int[,] newmatrix = MulMatrixNumber(number, matrix);
-                    PrintMul(newmatrix);
+                    Console.WriteLine($"Результат умножения на число {number} : ");
+                    Print(newmatrix);
                     break;
                 }
                 else
@@ -361,7 +345,8 @@ namespace Hw5
                         Console.WriteLine("Вторая матрица: ");
                         Print(MatrixB);
                         int[,] matrixC = SumMatrix(MatrixA, MatrixB);
-                        PrintSum(matrixC);
+                        Console.WriteLine("Результат сложения: ");
+                        Print(matrixC);
                         break;
                     }
                     else
@@ -401,7 +386,8 @@ namespace Hw5
                         Console.WriteLine("Вторая матрица: ");
                         Print(MatrixD);
                         int[,] MatrixE = MulMatrix(MatrixC, MatrixD);
-                        PrintMul(MatrixE);
+                        Console.WriteLine("Результат умножения: ");
+                        Print(MatrixE);
                         break;
                     }
 

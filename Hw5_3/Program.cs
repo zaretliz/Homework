@@ -51,7 +51,7 @@ namespace Hw5_3
         static void Main(string[] args)
         {
              string text = DataText();
-             string cleartext = ClearText(text);
+             string cleartext = ClearText(text.ToLower());
             Print(cleartext);
              
         }

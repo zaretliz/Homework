@@ -9,75 +9,89 @@ namespace Hw5_4
     class Program
     {
         /// <summary>
-        /// Проверка на арифметическую прогрессию
+        /// Проверка нак арифметическую прогрессию
         /// </summary>
-        /// <param name="numbers"></param>
-        static bool ProgressionAlgebra(params int[] numbers)
+        /// <param name="nums"></param>
+        /// <returns></returns>
+        public static bool IsProgressionAr(int[] nums)
         {
-            bool progression = false;
+            int dif = nums[1] - nums[0];
+            bool isArithmetic = true;
 
-            for (int i = 1; i < numbers.Length - 1; i++)
+            for (int i = 1; i < nums.Length-1; i++)
             {
-                if (numbers[i] == ((numbers[i - 1] + numbers[i + 1]) / 2))
-                {
-                    progression = true;
-                    return progression;
-                }
-                else
-                {
-                    progression = false;
-                    return progression;
-                }
+                if (nums[i] != nums[i -1] + (i -1) * dif)
+                    isArithmetic = false;
+                
             }
-            return progression;
-            
+            return isArithmetic;
         }
+
         /// <summary>
         /// Проверка на геометрическую прогрессию
         /// </summary>
-        /// <param name="numbers"></param>
+        /// <param name="nums"></param>
         /// <returns></returns>
-        static bool ProgressionGeometry(params int[] numbers)
-        {
-            bool progression = false;
+        public static bool IsProgressionGeo(int[] nums)
+        { 
 
-            for (int i = 1; i < numbers.Length - 1; i++)
+            bool isGeometric = true;
+
+            for (int i = 1; i < nums.Length-1; i++)
             {
-                if (Math.Abs(numbers[i]) == Math.Sqrt((numbers[i - 1] * numbers[i + 1])))
-                {
-                   progression = true;
-                    return progression;
-                }
-                else
-                {
-                    progression = false;
-                    return progression;
+                if (Math.Abs(nums[i]) != Math.Sqrt((nums[i - 1] * nums[i + 1])))
+                    isGeometric = false;
+     
 
-                }
+
             }
-            return progression;
-
+            return isGeometric;
         }
+
         /// <summary>
         /// Получение исходной информации
         /// </summary>
         /// <returns></returns>
-        static string Data()
+        static int[] Data()
         {
-            Console.Write("Введите через пробел последовательность чисел: ");
-            string numbers = Console.ReadLine();
-            return numbers;
+
+            do
+            {
+                Console.WriteLine("Введите через пробел последовательность чисел: ");
+                string test = Console.ReadLine();
+                string[] temp = test.Split(' ');
+                int[] nums = new int[temp.Length];
+                bool res = Check(temp);
+                if (res == true)
+                {
+                    for (int i = 0; i < nums.Length - 1; i++)
+                    {
+                        nums[i] = int.Parse(temp[i]);
+                    }
+                    return nums;
+
+                }
+            }
+            while (true);
         }
-        /// <summary>
-        /// Разделение текста и перевод в числа
-        /// </summary>
-        /// <param name="numbers"></param>
-        /// <returns></returns>
-        static int[] Split(string numbers)
+        static bool Check(string[] temp)
         {
-            int[] nums = numbers.Split(' ').Select(x => Convert.ToInt32(x)).ToArray();
-            return nums;
+            bool res = true;
+            for (int i = 0; i < temp.Length; i++)
+            {
+                int x;
+                res = int.TryParse(temp[i], out x);
+                if (res == false)
+                 { 
+                    Console.WriteLine("Последовательность не числовая");
+                    return res; 
+                 }
+                
+            }
+            return res;
+
         }
+
         /// <summary>
         /// Вывод результата
         /// </summary>
@@ -86,11 +100,11 @@ namespace Hw5_4
         {
             if (result == true)
             {
-                Console.WriteLine("Последовательность является частью арифметической прогресии");
+                Console.WriteLine("Последовательность является частью арифметической прогресcии");
             }
             else
             {
-                Console.WriteLine("Последовательность неявляется частью прогресии");
+                Console.WriteLine("Последовательность не является частью арифметической прогрессии");
             }
             Console.ReadKey();
         }
@@ -102,31 +116,29 @@ namespace Hw5_4
         {
              if (result == true)
             {
-                Console.WriteLine("Последовательность является частью геометрической прогресии");
+                Console.WriteLine("Последовательность является частью геометрической прогресcии");
             }
             else
             {
-                Console.WriteLine("Последовательность неявляется частью прогресии");
+                Console.WriteLine("Последовательность не является частью геометрической прогресcии");
             }
             Console.ReadKey();
         }
 static void Main(string[] args)
         {
-            string text = Data();
-            int[] numbers = Split(text);
+            int[] numbers = Data();
 
-            bool result1 = ProgressionAlgebra(numbers);
-            if (result1 == true)
+
+            bool result1 = IsProgressionAr(numbers);               
+            PrintAl(result1);
+            if (result1 == false)
             {
-                PrintAl(result1);
-            }
-            else
-            {
-                bool result2 = ProgressionGeometry(numbers);
+                bool result2 = IsProgressionGeo(numbers);
                 PrintGeo(result2);
             }
-
             
+
+
         }
     }
 }
