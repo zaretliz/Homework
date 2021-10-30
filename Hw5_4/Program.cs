@@ -33,20 +33,26 @@ namespace Hw5_4
         /// <param name="nums"></param>
         /// <returns></returns>
         public static bool IsProgressionGeo(int[] nums)
-        { 
+        {
+            int n = nums.Length;
 
-            bool isGeometric = true;
+                if (n == 1)
 
-            for (int i = 1; i < nums.Length-1; i++)
-            {
-                if (Math.Abs(nums[i]) != Math.Sqrt((nums[i - 1] * nums[i + 1])))
-                    isGeometric = false;
-     
+                    return true;
 
+                int q = nums[1] / (nums[0]);
 
-            }
-            return isGeometric;
+                for (int i = 1; i < n; i++)
+                {
+                if (nums[i] == 0) return false;
+                else if ((nums[i] / (nums[i - 1])) != q)   return false;
+                }
+
+                return true;
+
         }
+
+
 
         /// <summary>
         /// Получение исходной информации
@@ -64,7 +70,7 @@ namespace Hw5_4
                 bool res = Check(temp);
                 if (res == true)
                 {
-                    for (int i = 0; i < nums.Length - 1; i++)
+                    for (int i = 0; i < nums.Length; i++)
                     {
                         nums[i] = int.Parse(temp[i]);
                     }
@@ -74,6 +80,11 @@ namespace Hw5_4
             }
             while (true);
         }
+        /// <summary>
+        /// Проверка ввода данных
+        /// </summary>
+        /// <param name="temp"></param>
+        /// <returns></returns>
         static bool Check(string[] temp)
         {
             bool res = true;
@@ -100,11 +111,11 @@ namespace Hw5_4
         {
             if (result == true)
             {
-                Console.WriteLine("Последовательность является частью арифметической прогресcии");
+                Console.WriteLine("Последовательность является арифметической прогресcией");
             }
             else
             {
-                Console.WriteLine("Последовательность не является частью арифметической прогрессии");
+                Console.WriteLine("Последовательность не является арифметической прогрессией");
             }
             Console.ReadKey();
         }
@@ -116,11 +127,11 @@ namespace Hw5_4
         {
              if (result == true)
             {
-                Console.WriteLine("Последовательность является частью геометрической прогресcии");
+                Console.WriteLine("Последовательность является геометрической прогресcией");
             }
             else
             {
-                Console.WriteLine("Последовательность не является частью геометрической прогресcии");
+                Console.WriteLine("Последовательность не является геометрической прогресcией");
             }
             Console.ReadKey();
         }
