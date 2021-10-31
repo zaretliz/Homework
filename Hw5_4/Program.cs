@@ -15,16 +15,23 @@ namespace Hw5_4
         /// <returns></returns>
         public static bool IsProgressionAr(int[] nums)
         {
-            int dif = nums[1] - nums[0];
-            bool isArithmetic = true;
-
-            for (int i = 1; i < nums.Length-1; i++)
+            int n = nums.Length;
+            if (n <= 2)
             {
-                if (nums[i] != nums[i -1] + (i -1) * dif)
-                    isArithmetic = false;
-                
+                return false;
             }
-            return isArithmetic;
+            else
+            {
+                int dif = nums[1] - nums[0];
+                
+
+                for (int i = 1; i < nums.Length - 1; i++)
+                {
+                    if (nums[i] != nums[i - 1] + (i - 1) * dif)
+                        return false;
+                }
+                return true;
+            }
         }
 
         /// <summary>
@@ -35,20 +42,23 @@ namespace Hw5_4
         public static bool IsProgressionGeo(int[] nums)
         {
             int n = nums.Length;
-
-                if (n == 1)
-
-                    return true;
-
+            if (n <= 2)
+            {
+                return false;
+            }   
+            else
+            {
                 int q = nums[1] / (nums[0]);
 
                 for (int i = 1; i < n; i++)
                 {
-                if (nums[i] == 0) return false;
-                else if ((nums[i] / (nums[i - 1])) != q)   return false;
+                    if (nums[i] == 0) return false;
+                    else if ((nums[i] / (nums[i - 1])) != q) return false;
                 }
 
                 return true;
+            }
+                
 
         }
 
@@ -135,7 +145,7 @@ namespace Hw5_4
             }
             Console.ReadKey();
         }
-static void Main(string[] args)
+        static void Main(string[] args)
         {
             int[] numbers = Data();
 
