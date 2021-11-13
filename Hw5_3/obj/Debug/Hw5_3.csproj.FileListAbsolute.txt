@@ -1,7 +1,0 @@
-D:\projects\Homework\Hw5_3\bin\Debug\Hw5_3.exe.config
-D:\projects\Homework\Hw5_3\bin\Debug\Hw5_3.exe
-D:\projects\Homework\Hw5_3\bin\Debug\Hw5_3.pdb
-D:\projects\Homework\Hw5_3\obj\Debug\Hw5_3.csproj.AssemblyReference.cache
-D:\projects\Homework\Hw5_3\obj\Debug\Hw5_3.csproj.CoreCompileInputs.cache
-D:\projects\Homework\Hw5_3\obj\Debug\Hw5_3.exe
-D:\projects\Homework\Hw5_3\obj\Debug\Hw5_3.pdb
