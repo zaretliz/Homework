@@ -11,18 +11,7 @@ namespace Hw6
 {
     class Program
     {
-        /// <summary>
-        /// Создание файла
-        /// </summary>
-        /// <param name="str"></param>
-        public static void CreateFile(string str)
-        {
-            using (FileStream fstream = new FileStream(@"number.txt", FileMode.Create))
-            {
-                byte[] array = System.Text.Encoding.Default.GetBytes(str); // преобразуем строку в байты
-                fstream.Write(array, 0, array.Length);                      // запись массива байтов в файл
-            }
-        }
+            
         /// <summary>
         /// Чтение номера из файла
         /// </summary>
@@ -51,8 +40,8 @@ namespace Hw6
         /// <param name="N"></param>
         public static void Group(int N)
         {
-            DateTime data = new DateTime();
-            data = DateTime.Now;
+            Stopwatch time = new Stopwatch();
+            time.Start();
 
             int count = 0;
             if (N > 0)
@@ -80,8 +69,9 @@ namespace Hw6
             }
             Console.WriteLine($" Количество групп при N = {N}, равно {count}");
 
-            TimeSpan time = DateTime.Now.Subtract(data);
-            Console.WriteLine($"Время работы, мс = {time.TotalMilliseconds}");
+            time.Stop(); 
+            Console.WriteLine($"Время работы {time.Elapsed} "); 
+
         }
         /// <summary>
         /// Создание групп в файле
@@ -89,9 +79,9 @@ namespace Hw6
         /// <param name="N"></param>
         public static void GroupFile(int N)
         {
-            DateTime date = new DateTime();
-            date = DateTime.Now;
-            
+            Stopwatch timer = new Stopwatch();
+            timer.Start();
+
             int count = 0;
             if (N > 0)
             {
@@ -118,9 +108,8 @@ namespace Hw6
 
                 Console.WriteLine($"\nФайл с группами записан в {path}.zip");
 
-                TimeSpan timeSpan = DateTime.Now.Subtract(date);
-                
-                Console.WriteLine($"Время работы, мс = {timeSpan.TotalMilliseconds}");
+                timer.Stop();
+                Console.WriteLine($"Время работы {timer.Elapsed} ");
 
                 Console.WriteLine("Хотите заархивировать файл? \n y / n ? ");
 
@@ -155,14 +144,12 @@ namespace Hw6
 
         static void Main(string[] args)
         {
-            Console.Write("Введите число N: ");
-            string str = Console.ReadLine();
+            string str = @"D:\number.txt";
 
-            // Запись в файл
-            CreateFile(str);
+            Console.WriteLine($"Файл с числом должен находится {str}");
 
             // Чтение из файла
-            int N = ReadNumber(@"number.txt");
+            int N = ReadNumber(@"D:\number.txt");
 
             //Выбор действия
             Console.WriteLine($"Получено число из файла {N}\n Выберите дальнейший вариант работы" +
