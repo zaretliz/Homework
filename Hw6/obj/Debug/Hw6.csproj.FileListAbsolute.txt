@@ -1,7 +1,0 @@
-D:\projects\Homework\Hw6\bin\Debug\Hw6.exe.config
-D:\projects\Homework\Hw6\bin\Debug\Hw6.exe
-D:\projects\Homework\Hw6\bin\Debug\Hw6.pdb
-D:\projects\Homework\Hw6\obj\Debug\Hw6.csproj.AssemblyReference.cache
-D:\projects\Homework\Hw6\obj\Debug\Hw6.csproj.CoreCompileInputs.cache
-D:\projects\Homework\Hw6\obj\Debug\Hw6.exe
-D:\projects\Homework\Hw6\obj\Debug\Hw6.pdb
