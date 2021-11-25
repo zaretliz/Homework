@@ -1,7 +1,0 @@
-D:\projects\Homework\Work7\bin\Debug\Work7.exe.config
-D:\projects\Homework\Work7\bin\Debug\Work7.exe
-D:\projects\Homework\Work7\bin\Debug\Work7.pdb
-D:\projects\Homework\Work7\obj\Debug\Work7.csproj.AssemblyReference.cache
-D:\projects\Homework\Work7\obj\Debug\Work7.csproj.CoreCompileInputs.cache
-D:\projects\Homework\Work7\obj\Debug\Work7.exe
-D:\projects\Homework\Work7\obj\Debug\Work7.pdb

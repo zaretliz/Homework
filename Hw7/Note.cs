@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Work7
+namespace Hw7
 {
     struct Note
     {
@@ -39,22 +39,21 @@ namespace Work7
         /// </summary>
         public int Weight { get { return this.weight; } set { this.weight = value; } }
         #endregion
-
         /// <summary>
         /// Конструктор
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="data"></param>
+        /// <param name="ID"></param>
+        /// <param name="Data"></param>
         /// <param name="Name"></param>
-        /// <param name="age"></param>
-        /// <param name="height"></param>
-        /// <param name="weight"></param>
+        /// <param name="Age"></param>
+        /// <param name="Height"></param>
+        /// <param name="Weight"></param>
         public Note(int ID, DateTime Data, string Name, int Age, int Height, int Weight)
         {
             this.id = ID;
             this.data = Data;
             this.name = Name;
-            this.age =Age;
+            this.age = Age;
             this.height = Height;
             this.weight = Weight;
         }
@@ -69,34 +68,11 @@ namespace Work7
         }
 
         #region Поля
-        /// <summary>
-        /// Поле "ID"
-        /// </summary>
         private int id;
-
-        /// <summary>
-        /// Поле "Дата"
-        /// </summary>
         private DateTime data;
-
-        /// <summary>
-        /// Поле "Имя"
-        /// </summary>
         private string name;
-
-        /// <summary>
-        /// Поле "Возраст"
-        /// </summary>
         private int age;
-
-        /// <summary>
-        /// Поле "Рост"
-        /// </summary>
         private int height;
-
-        /// <summary>
-        /// Поле "Вес"
-        /// </summary>
         private int weight;
         #endregion
     }
