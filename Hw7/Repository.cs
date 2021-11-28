@@ -71,27 +71,7 @@ namespace Hw7
                                      Convert.ToInt32(arg[4]),
                                      Convert.ToInt32(arg[5])));
         }
-        /// <summary>
-        /// Добавление данных из файла
-        /// </summary>
-        public void FromFile(string addfile)
-        {
-            note.Clear();
-
-            using (StreamReader read = new StreamReader(addfile))
-            {
-                while (!read.EndOfStream)
-                {
-                    string[] arg = read.ReadLine().Split(',');
-                    AddLine(new Note(Convert.ToInt32(arg[0]),
-                                     Convert.ToDateTime(arg[1]),
-                                     arg[2],
-                                     Convert.ToInt32(arg[3]),
-                                     Convert.ToInt32(arg[4]),
-                                     Convert.ToInt32(arg[5])));
-                }
-            }
-        }
+       
         /// <summary>
         /// Метод сохранения данных
         /// </summary>
@@ -139,9 +119,19 @@ namespace Hw7
         /// Метод удаления записей
         /// </summary>
         /// <param name="line">Номер строки для удаления</param>
-        public void Delete(int line)
+        public bool Delete(int line)
         {
-            note.RemoveAt(line - 1);
+            int i = note.Count;
+            if (line >= i)
+            {
+                Console.WriteLine($"Невозможно удалить строку с номером {line} ");
+                return false;
+            }
+            else
+            {
+                note.RemoveAt(line - 1);
+                return true;
+            }
         }
         /// <summary>
         /// Метод импорта записей по диапазону дат
@@ -250,21 +240,32 @@ namespace Hw7
         /// Редактирование записей
         /// </summary>
         /// <param name="line"></param>
-        public void Edit(int line)
+        public bool Edit(int line)
         {
-            Note temp = new Note();
-            Console.WriteLine("Введите новую дату: ");
-            temp.Data = Convert.ToDateTime(Console.ReadLine());
-            Console.WriteLine("Введите новое имя: ");
-            temp.Name = Console.ReadLine();
-            Console.WriteLine("Введите новый возраст: ");
-            temp.Age = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Введите новый рост: ");
-            temp.Height = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Введите новый вес: ");
-            temp.Weight = Convert.ToInt32(Console.ReadLine());
+            int i = note.Count;
+            if (line >= i)
+            {
+                Console.WriteLine($"Невозможно редактировать строку с номером {line} ");
+                return false;
+            }
+            else
+            {
+                Note temp = new Note();
+                Console.WriteLine("Введите новую дату: (формат dd.mm.yyyy)");
+                temp.Data = Convert.ToDateTime(Console.ReadLine());
+                Console.WriteLine("Введите новое имя: ");
+                temp.Name = Console.ReadLine();
+                Console.WriteLine("Введите новый возраст: ");
+                temp.Age = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Введите новый рост: ");
+                temp.Height = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Введите новый вес: ");
+                temp.Weight = Convert.ToInt32(Console.ReadLine());
 
-            note[line - 1] = temp;
+                note[line - 1] = temp;
+                return true;
+            }
+            
         }
     }
 }
