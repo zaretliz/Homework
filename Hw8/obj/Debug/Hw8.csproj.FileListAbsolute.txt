@@ -1,0 +1,10 @@
+D:\projects\Homework\Hw8\obj\Debug\Hw8.csproj.AssemblyReference.cache
+D:\projects\Homework\Hw8\obj\Debug\Hw8.csproj.CoreCompileInputs.cache
+D:\projects\Homework\Hw8\bin\Debug\Hw8.exe.config
+D:\projects\Homework\Hw8\bin\Debug\Hw8.exe
+D:\projects\Homework\Hw8\bin\Debug\Hw8.pdb
+D:\projects\Homework\Hw8\bin\Debug\Newtonsoft.Json.dll
+D:\projects\Homework\Hw8\bin\Debug\Newtonsoft.Json.xml
+D:\projects\Homework\Hw8\obj\Debug\Hw8.csproj.CopyComplete
+D:\projects\Homework\Hw8\obj\Debug\Hw8.exe
+D:\projects\Homework\Hw8\obj\Debug\Hw8.pdb
