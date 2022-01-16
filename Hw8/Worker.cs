@@ -20,7 +20,7 @@ namespace Hw8
         /// <param name="Number">Уникальный номер</param>
         /// <param name="Salary">Зарплата</param>
         /// <param name="Projects">Количество проектов</param>
-        public Worker(int ID,string LastName, string FirstName, int Age, int Department, int Salary, int Projects)
+        public Worker(string ID,string LastName, string FirstName, int Age, int Department, int Salary, int Projects)
         {
             this.lastName = LastName;
             this.firstName = FirstName;
@@ -40,7 +40,7 @@ namespace Hw8
         /// <returns></returns>
         public string Print()
         {
-            return $"{this.lastName,10} {this.firstName,25} {this.age,10} {this.department,10} {this.department,17} {this.salary,10} {this.projects,10}";
+            return $" {this.id,10} {this.lastName,10} {this.firstName,25} {this.age,10} {this.department,10} {this.department,17} {this.salary,10} {this.projects,10}";
         }
 
         #endregion
@@ -70,7 +70,7 @@ namespace Hw8
         /// <summary>
         /// Номер
         /// </summary>
-        public int ID { get { return this.id; } set { this.id = value; } }
+        public string ID { get { return this.id; } set { this.id = Guid.NewGuid().ToString("N"); } }
 
         /// <summary>
         /// Оплата труда
@@ -91,7 +91,7 @@ namespace Hw8
         public string firstName;
         public int age;
         public int department;
-        public int id;
+        public string id;
         public int salary;
         public int projects;
         #endregion

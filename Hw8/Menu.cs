@@ -12,8 +12,8 @@ namespace Hw8
     public class Menu
     {
         bool isShowMenu = true;
-        string title, lastName, firstName;
-        int input, salary, age, id, number, num, projects;
+        string title, lastName, firstName, id, surname, name;
+        int input, salary, age,  number, num, projects;
         Data data = new Data();
         private DateTime dateTime = new DateTime(2022, 2, 22); 
         string pathJson = "data.json";
@@ -136,7 +136,8 @@ namespace Hw8
                         firstName = Console.ReadLine();
                         Console.WriteLine("Введите Возраст:");
                         CheckInput(ref age);  
-                        //Console.WriteLine("Введите индивидуальный номер сотрудника:");
+                        Console.WriteLine("Введите индивидуальный номер сотрудника: (32 цифры)");
+                        id = Console.ReadLine();
                         //CheckInput(ref id);
                         Console.WriteLine("Введите значение зарплаты:");
                         CheckInput(ref salary);
@@ -221,9 +222,11 @@ namespace Hw8
                 case 2:
                     data.PrintWorkers();
                     Console.WriteLine();
-                    Console.WriteLine("Введите индивидуальный номер сотрудника");
-                    CheckInput(ref id);
-                    data.RemoveWorker(id);
+                    Console.WriteLine("Введите фамилию сотрудника");
+                    surname = Console.ReadLine();
+                    Console.WriteLine("Введите имя сотрудника");
+                    name = Console.ReadLine();
+                    data.RemoveWorker(surname,name);
                     Console.Clear();
                     data.PrintWorkers();
                     Console.ReadLine();

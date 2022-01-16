@@ -13,7 +13,7 @@ namespace Hw8
     {
         public List<Department> departments = new List<Department>();
         public List<Worker> workers = new List<Worker>();
-        public string[] workersTitles = new string[] { "№", "Фамилия", "Имя", "Возраст", "№ Отдела", "Зарплата", "Количество проектов" };
+        public string[] workersTitles = new string[] { "Индивидуальный номер сотрудника", "Фамилия", "Имя", "Возраст", "№ Отдела", "Зарплата", "Количество проектов" };
         public string[] departmentTitles = new[] { "№",  "Название отдела", "Дата создания", "Количество сотрудников" };
         private string json;
         private XmlSerializer xmlSerializer;
@@ -28,7 +28,7 @@ namespace Hw8
         /// <param name="department">№ отдела</param>
         /// <param name="salary">Зарплата</param>
         /// <param name="projects">Количество проектов</param>
-        public void AddWorker(int id, string lastName, string firstName, int age, int department, int salary, int projects)
+        public void AddWorker(string id, string lastName, string firstName, int age, int department, int salary, int projects)
         {
             
             departments[department - 1].workers.Add(new Worker(id, lastName, firstName, age, department, salary, projects));
@@ -38,13 +38,13 @@ namespace Hw8
         /// Удаление работника
         /// </summary>
         /// <param name="idWorkers">Номер сотрудника</param>
-        public void RemoveWorker(int idWorkers)
+        public void RemoveWorker(string surname, string firstname)
         {
             for (int i = 0; i < departments.Count; i++)
             {
                 for (int j = 0; j < departments[i].workers.Count; j++)
                 {
-                    if (departments[i].workers[j].id == idWorkers)
+                    if (departments[i].workers[j].lastName == surname && departments[i].workers[j].firstName == firstname)
                     {
                         departments[i].workers.Remove(departments[i].workers[j]);
                     }
@@ -137,15 +137,15 @@ namespace Hw8
         /// </summary>
         public void PrintWorkers()
         {
-            Console.WriteLine($"{workersTitles[0],-10} {workersTitles[1],10} {workersTitles[2],10} {workersTitles[3],10}" +
-                              $"{workersTitles[4],10} {workersTitles[5],10} {workersTitles[6],10}");
+            Console.WriteLine($"{workersTitles[0],10} {workersTitles[1],15} {workersTitles[2],10} {workersTitles[3],10}" +
+                              $"{workersTitles[4],10} {workersTitles[5],10} {workersTitles[6],15}");
 
             for (int i = 0; i < departments.Count; i++)
             {
                 for (int j = 0; j < departments[i].workers.Count; j++)
                 {
-                    Console.WriteLine($"{departments[i].workers[j].id,-10} {departments[i].workers[j].lastName,10}" +
-                                      $"{departments[i].workers[j].firstName,10} {departments[i].workers[j].age,10}" +
+                    Console.WriteLine($"{departments[i].workers[j].id} {departments[i].workers[j].lastName,13}" +
+                                      $"{departments[i].workers[j].firstName,13} {departments[i].workers[j].age,8}" +
                                       $"{departments[i].workers[j].department,10} {departments[i].workers[j].salary,10} {departments[i].workers[j].projects,10}");
                 }
             }
